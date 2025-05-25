@@ -1,0 +1,20 @@
+{
+  "name": "SoloAnilater",
+  "short_name": "SoloAnilater",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#111111",
+  "theme_color": "#ff0000",
+  "icons": [
+    {
+      "src": "https://cdn.mos.cms.futurecdn.net/anX3PTnTiFedx38iJ9gwcR-970-80.jpg.webp",
+      "sizes": "192x192",
+      "type": "image/webp"
+    },
+    {
+      "src": "https://cdn.mos.cms.futurecdn.net/anX3PTnTiFedx38iJ9gwcR-970-80.jpg.webp",
+      "sizes": "512x512",
+      "type": "image/webp"
+    }
+  ]
+}
