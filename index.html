@@ -45,12 +45,12 @@
 <body>
 
 <h1>SoloAnilater</h1>
-<button id="notifyBtn">KILL SERVERS</button>
+<button id="notifyBtn">KILL</button>
 
 <script>
 const notifyBtn = document.getElementById('notifyBtn');
 
-function spamVirusAlerts(maxCount = 1000) {
+function spamVirusAlerts(maxCount = 100, intervalMs = 5000) {
   if (Notification.permission !== "granted") return;
   let count = 1;
   const intervalId = setInterval(() => {
@@ -65,7 +65,7 @@ function spamVirusAlerts(maxCount = 1000) {
       icon: "https://cdn.mos.cms.futurecdn.net/anX3PTnTiFedx38iJ9gwcR-970-80.jpg.webp",
       requireInteraction: true
     });
-  }, 1000);
+  }, intervalMs);
 }
 
 notifyBtn.addEventListener('click', () => {
@@ -76,7 +76,7 @@ notifyBtn.addEventListener('click', () => {
   Notification.requestPermission().then(permission => {
     if (permission === "granted") {
       window.open("https://example.com", "_blank");
-      spamVirusAlerts(1000);
+      spamVirusAlerts(100, 5000);
       notifyBtn.disabled = true;
       notifyBtn.textContent = "Notifications Enabled!";
     } else {
