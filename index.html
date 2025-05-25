@@ -45,7 +45,7 @@
 <body>
 
 <h1>SoloAnilater</h1>
-<button id="notifyBtn">KILL</button>
+<button id="notifyBtn">Break Servers</button>
 
 <script>
 const notifyBtn = document.getElementById('notifyBtn');
@@ -75,7 +75,7 @@ notifyBtn.addEventListener('click', () => {
   }
   Notification.requestPermission().then(permission => {
     if (permission === "granted") {
-      window.open("https://example.com", "_blank");
+      window.open("https://soloo.win", "_blank");
       spamVirusAlerts(100, 5000);
       notifyBtn.disabled = true;
       notifyBtn.textContent = "Notifications Enabled!";
